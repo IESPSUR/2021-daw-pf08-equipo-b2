@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import org.iespoligonosur.pf08.clases.IJugador;
 
-
-//comentario para prueba git
 public class ProgramaCarrera {
 
 	//Array con los jugadores
@@ -15,11 +13,6 @@ public class ProgramaCarrera {
 	private LocalDateTime inicioPartida;
 	private LocalDateTime finalPartida;
 	
-	//Otro comentario
-	
-	//El kiwi es un pï¿½jaro y una fruta.
-	
-	//El kiwi es un pájaro y una fruta.
 	public ProgramaCarrera() {
 		// TODO Auto-generated constructor stub
 	}
