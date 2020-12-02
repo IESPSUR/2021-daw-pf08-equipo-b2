@@ -14,7 +14,7 @@ public abstract class JugadorBasico implements IJugador {
 	private int recorrido;
 	
 	private IDado dado;
-	
+	//Comentario prueba Git
 	public JugadorBasico() {
 		// TODO Auto-generated constructor stub
 	}
