@@ -14,6 +14,8 @@ public class ProgramaCarrera {
 	private LocalDateTime inicioPartida;
 	private LocalDateTime finalPartida;
 	
+	
+	//El kiwi es un pájaro y una fruta.
 	public ProgramaCarrera() {
 		// TODO Auto-generated constructor stub
 	}
