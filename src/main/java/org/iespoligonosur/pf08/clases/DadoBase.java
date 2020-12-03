@@ -10,7 +10,7 @@ public abstract class DadoBase implements IDado{
 	private int numeroCaras;
 	
 	public DadoBase(int numeroCaras) {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub//Comentario prueba
 	}
 
 }
