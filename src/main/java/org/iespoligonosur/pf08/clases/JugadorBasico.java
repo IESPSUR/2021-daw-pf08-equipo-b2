@@ -3,7 +3,7 @@ package org.iespoligonosur.pf08.clases;
 /**
  * Clases base de Jugadores.
  * Se deben implemenntar las clases hijas Tortuga, Liebre y CorreCaminos
- * @author eserrano
+ * @author angel
  *
  */
 public abstract class JugadorBasico implements IJugador {
@@ -14,7 +14,7 @@ public abstract class JugadorBasico implements IJugador {
 	private int recorrido;
 	
 	private IDado dado;
-	//Comentario prueba Git
+	
 	public JugadorBasico() {
 		// TODO Auto-generated constructor stub
 	}

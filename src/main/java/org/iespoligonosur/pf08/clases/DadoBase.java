@@ -2,7 +2,7 @@ package org.iespoligonosur.pf08.clases;
 
 /**
  * Definicion de una clase base para la implementacion de dados de N caras
- * @author eserrano
+ * @author angel
  *
  */
 public abstract class DadoBase implements IDado{
