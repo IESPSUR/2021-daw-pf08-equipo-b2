@@ -5,3 +5,4 @@ public enum TipoJugador {
 		LIEBRE,
 		CORRECAMINOS
 }
+	//El correcaminos es un tipo excelente
