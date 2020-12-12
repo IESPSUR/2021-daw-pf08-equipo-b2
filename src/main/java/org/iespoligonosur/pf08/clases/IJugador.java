@@ -6,6 +6,9 @@ public interface IJugador {
 	 * Devuelve el nombre del Jugador
 	 * @return Nombre del jugador
 	 */
+	
+
+	
 	public String getNombre();
 	
 	/**

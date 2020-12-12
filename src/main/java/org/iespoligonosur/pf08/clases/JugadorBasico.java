@@ -8,15 +8,23 @@ package org.iespoligonosur.pf08.clases;
  */
 public abstract class JugadorBasico implements IJugador {
 
-	private String nombre;
+	protected String nombre;
 	private int velocidadPunta;
 	private int ultimaTirada;
 	private int recorrido;
 	
 	private IDado dado;
 	
-	public JugadorBasico() {
-		// TODO Auto-generated constructor stub
+	public JugadorBasico(String nombre, int velocidadPunta, int ultimaTirada, int recorrido) {
+		this.nombre = nombre;
+		this.velocidadPunta = velocidadPunta;
+		this.ultimaTirada= ultimaTirada;
+		this.recorrido = recorrido;
 	}
 
+	
+
+//	public void  avanza() {
+//		System.out.println("La tortuga avanza");
+//	}
 }
