@@ -15,8 +15,10 @@ public class ProgramaCarrera {
 	// Array con los jugadores
 	private static IJugador[] jugadores = new IJugador[6];
 	private static int longitudPistaCarreras = 100;
+	private int turno;
 	private static LocalDateTime inicioPartida;
 	private static LocalDateTime finalPartida;
+	public static int resPersonaje;
 
 	public ProgramaCarrera() {
 		// TODO Auto-generated constructor stub
@@ -37,6 +39,8 @@ public class ProgramaCarrera {
 		int ultimaTirada = 0;
 		int recorrido = 0;
 
+//		Tortuga t = new Tortuga(nombre, 0, 0, 0);
+
 		System.out.println("Bienvenido al juego de Carreras");
 		System.out.println("¿Cuantas carrerar desea realizar?");
 		resNumCarrera = sc.nextInt();
@@ -47,7 +51,6 @@ public class ProgramaCarrera {
 
 			System.out.println(i + "ª carrera");
 			creaJugadores(jugadores);
-			iniciaPartida(jugadores);
 
 		}
 	}
@@ -68,10 +71,9 @@ public class ProgramaCarrera {
 				System.out.println("Elige de 2 a 6 jugadores");
 				resNumJugador = sc.nextInt();
 				for (int i = 0; i < jugadores.length; i++) {
-
-					jugadores[i] = jugadores[resNumJugador];
-
+					jugadores [i] = jugadores [resNumJugador];
 				}
+
 				if (resNumJugador >= 2 && resNumJugador <= 6) {
 
 					System.out.println("Has elegido " + resNumJugador + " jugadores");
@@ -120,11 +122,11 @@ public class ProgramaCarrera {
 					System.out.println("Personaje incorrecto");
 
 				}
-			} while ((resPersonaje == 1 || resPersonaje == 2 || resPersonaje == 3) == false);
+			}
+			while ((resPersonaje == 1 || resPersonaje == 2 || resPersonaje == 3) == false);
 
 		}
-		System.out.println(jugadores[0]);
-		System.out.println(jugadores [1]);
+		iniciaPartida(longitudPistaCarreras);
 	}
 
 	/**
@@ -132,23 +134,18 @@ public class ProgramaCarrera {
 	 * usuario La partida termina cuando cualquiera de los jugadores recorre toda la
 	 * longitud determinada para la pista alcanzando la meta.
 	 */
-	private static void iniciaPartida(IJugador [] jugadores) {
-
+	private static void iniciaPartida(int longitudPistaCarreras) {
+		
 		System.out.println("Inicia la carrera");
 		System.out.println("*****************");
 		inicioPartida = LocalDateTime.now();
 		System.out.println("Temporizador: " + inicioPartida);
-		
-		int turno = 0;
-		
-//		for (int i = 1; i < jugadores; i++ ) {
-			
-//			System.out.println("Turno para primer jugador");
-//			
-//			System.out.println("Turno para segundo jugador");
+		for(int i = 0; i < longitudPistaCarreras; i++) {
+			System.out.println("Turno Primer Jugador");
+			System.out.println("Turno Segundo Jugador");
 		}
 
-//	}
+	}
 
 	/**
 	 * Este metodo realiza una representacion grafica en consola de la pista y la
