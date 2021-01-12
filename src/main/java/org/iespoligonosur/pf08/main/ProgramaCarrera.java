@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import org.iespoligonosur.pf08.clases.Correcaminos;
+import org.iespoligonosur.pf08.clases.DadoBase;
 import org.iespoligonosur.pf08.clases.IJugador;
 import org.iespoligonosur.pf08.clases.JugadorBasico;
 import org.iespoligonosur.pf08.clases.Liebre;
@@ -50,7 +51,7 @@ public class ProgramaCarrera {
 		for (int i = 1; i <= resNumCarrera; i++) {
 
 			System.out.println(i + "ª carrera");
-			creaJugadores(jugadores);
+			creaJugadores(jugadores, recorrido);
 
 		}
 	}
@@ -59,7 +60,7 @@ public class ProgramaCarrera {
 	 * Este metodo se encarga de crear uno a uno hasta 6 jugadores con la ayuda del
 	 * usuario que introduce los datos a travÃ©s de la consola.
 	 */
-	private static void creaJugadores(IJugador[] jugadores) {
+	private static void creaJugadores(IJugador[] jugadores, int recorrido) {
 
 		int resNumJugador = 0;
 		int resPersonaje = 0;
@@ -100,21 +101,21 @@ public class ProgramaCarrera {
 					System.out.println("Has elegido Tortuga");
 					System.out.println("Escribe un nombre para tu personaje Tortuga");
 					nombre = sc.next();
-					Tortuga t = new Tortuga(nombre, 0, 0, 0);
+					Tortuga t = new Tortuga(nombre, 3, 0, 0, 0);
 					System.out.println(t);
 					break;
 				case 2:
 					System.out.println("Has elegido Liebre");
 					System.out.println("Escribe un nombre para tu personaje Liebre");
 					nombre = sc.next();
-					Liebre l = new Liebre(nombre, 0, 0, 0);
+					Liebre l = new Liebre(nombre, 6, 0, 0, 0);
 					System.out.println(l);
 					break;
 				case 3:
 					System.out.println("Has elegido Correcaminos");
 					System.out.println("Escribe un nombre para tu personaje Correcaminos");
 					nombre = sc.next();
-					Correcaminos c = new Correcaminos(nombre, 0, 0, 0);
+					Correcaminos c = new Correcaminos(nombre, 10, 0, 0, 0);
 					System.out.println(c);
 					break;
 				default:
@@ -126,7 +127,7 @@ public class ProgramaCarrera {
 			while ((resPersonaje == 1 || resPersonaje == 2 || resPersonaje == 3) == false);
 
 		}
-		iniciaPartida(longitudPistaCarreras);
+		iniciaPartida(longitudPistaCarreras, recorrido);
 	}
 
 	/**
@@ -134,15 +135,55 @@ public class ProgramaCarrera {
 	 * usuario La partida termina cuando cualquiera de los jugadores recorre toda la
 	 * longitud determinada para la pista alcanzando la meta.
 	 */
-	private static void iniciaPartida(int longitudPistaCarreras) {
+	private static void iniciaPartida(int longitudPistaCarreras, int recorrido) {
 		
 		System.out.println("Inicia la carrera");
 		System.out.println("*****************");
 		inicioPartida = LocalDateTime.now();
 		System.out.println("Temporizador: " + inicioPartida);
 		for(int i = 0; i < longitudPistaCarreras; i++) {
+			//int resultado = resultado de la clase DadoBase;
+			int resultado = 0;
+			if(resPersonaje == 1) {
 			System.out.println("Turno Primer Jugador");
-			System.out.println("Turno Segundo Jugador");
+			recorrido = recorrido + resultado;
+			longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			System.out.println(longitudPistaCarreras);
+			} else if (resPersonaje == 2) {
+				System.out.println("Turno Segundo Jugador");
+				if(resultado == 3) {
+					recorrido = recorrido + resultado;
+					longitudPistaCarreras = longitudPistaCarreras - recorrido;
+				} else {
+					System.out.println("Elige una opción:"+
+										"1. El resultado del dado es menor que 3."+
+										"2. El resultado del dado es mayor que 3.");
+					int res = sc.nextInt();
+					if (res == 1) {
+						recorrido = recorrido + resultado;
+						longitudPistaCarreras = longitudPistaCarreras - recorrido;
+					} else if (res == 2) {
+						recorrido = recorrido + resultado;
+						longitudPistaCarreras = longitudPistaCarreras - recorrido;
+					} else {
+						resultado = 0;
+						recorrido = recorrido + resultado;
+						longitudPistaCarreras = longitudPistaCarreras - recorrido;
+					}
+				}
+				System.out.println(longitudPistaCarreras);
+			} else {
+				System.out.println("Turno Tercer Jugador");
+				if (resultado % 2 == 0) {
+					recorrido = recorrido + resultado;
+					longitudPistaCarreras = longitudPistaCarreras - recorrido;
+				} else {
+					resultado = 0;
+					recorrido = recorrido + resultado;
+					longitudPistaCarreras = longitudPistaCarreras - recorrido;
+				}
+				System.out.println(longitudPistaCarreras);
+			}
 		}
 
 	}
