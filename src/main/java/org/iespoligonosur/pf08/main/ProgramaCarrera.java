@@ -143,14 +143,16 @@ public class ProgramaCarrera {
 		System.out.println("Temporizador: " + inicioPartida);
 		for(int i = 0; i < longitudPistaCarreras; i++) {
 			//int resultado = resultado de la clase DadoBase;
-			int resultado = 0;
+			int resultado;
 			if(resPersonaje == 1) {
 			System.out.println("Turno Primer Jugador");
+			resultado = DadoBase.lanzarDado(Tortuga.numeroCaras);
 			recorrido = recorrido + resultado;
 			longitudPistaCarreras = longitudPistaCarreras - recorrido;
 			System.out.println(longitudPistaCarreras);
 			} else if (resPersonaje == 2) {
 				System.out.println("Turno Segundo Jugador");
+				resultado = DadoBase.lanzarDado(Liebre.numeroCaras);
 				if(resultado == 3) {
 					recorrido = recorrido + resultado;
 					longitudPistaCarreras = longitudPistaCarreras - recorrido;
@@ -174,6 +176,7 @@ public class ProgramaCarrera {
 				System.out.println(longitudPistaCarreras);
 			} else {
 				System.out.println("Turno Tercer Jugador");
+				resultado = DadoBase.lanzarDado(Correcaminos.numeroCaras);
 				if (resultado % 2 == 0) {
 					recorrido = recorrido + resultado;
 					longitudPistaCarreras = longitudPistaCarreras - recorrido;
