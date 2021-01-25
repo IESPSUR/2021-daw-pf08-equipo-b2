@@ -11,10 +11,10 @@ public abstract class DadoBase implements IDado{
 	
 	public DadoBase(int numeroCaras) {
 		// TODO Auto-generated constructor stub//Comentario prueba
-		lanzarDado(numeroCaras);
+		numeroCaras = lanzarDado(numeroCaras);
 	}
 
-	public int lanzarDado(int numeroCaras) {
+	public static int lanzarDado(int numeroCaras) {
 		int resultado = (int) (Math.random() * numeroCaras + 1);
 		return resultado;
 	}

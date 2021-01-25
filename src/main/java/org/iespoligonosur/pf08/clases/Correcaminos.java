@@ -2,7 +2,7 @@ package org.iespoligonosur.pf08.clases;
 
 public class Correcaminos extends JugadorBasico {
 	
-	private static final TipoJugador tipo = TipoJugador.TORTUGA;
+	private static final TipoJugador tipo = TipoJugador.CORRECAMINOS;
 	public DadoBase dado;
 	private int numeroCaras;
 

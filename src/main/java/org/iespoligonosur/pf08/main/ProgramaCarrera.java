@@ -143,41 +143,36 @@ public class ProgramaCarrera {
 		System.out.println("Temporizador: " + inicioPartida);
 		for(int i = 0; i < longitudPistaCarreras; i++) {
 			//int resultado = resultado de la clase DadoBase;
-			int resultado;
-			if(resPersonaje == 1) {
+			int resultado = 0;
 			System.out.println("Turno Primer Jugador");
-			resultado = DadoBase.lanzarDado(Tortuga.numeroCaras);
-			recorrido = recorrido + resultado;
-			longitudPistaCarreras = longitudPistaCarreras - recorrido;
-			System.out.println(longitudPistaCarreras);
-			} else if (resPersonaje == 2) {
-				System.out.println("Turno Segundo Jugador");
-				resultado = DadoBase.lanzarDado(Liebre.numeroCaras);
-				if(resultado == 3) {
+			longitudPistaCarreras = ProgramaCarrera.resJugadorDado(longitudPistaCarreras, recorrido, resultado);
+			System.out.println("Turno Segundo Jugador");
+			longitudPistaCarreras = ProgramaCarrera.resJugadorDado(longitudPistaCarreras, recorrido, resultado);
+			System.out.println("Turno Tercer Jugador");
+			longitudPistaCarreras = ProgramaCarrera.resJugadorDado(longitudPistaCarreras, recorrido, resultado);
+		}
+	}
+	
+	private static int resJugadorDado(int longitudPistaCarreras, int recorrido, int resultado) {
+	if(resPersonaje == 1) {
+		resultado = DadoBase.lanzarDado(3);
+		recorrido = recorrido + resultado;
+		longitudPistaCarreras = longitudPistaCarreras - recorrido;
+		System.out.println(longitudPistaCarreras);
+		} else if (resPersonaje == 2) {
+			resultado = DadoBase.lanzarDado(6);
+			if(resultado == 3) {
+				recorrido = recorrido + resultado;
+				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			} else {
+				System.out.println("Elige una opción:"+
+									"1. El resultado del dado es menor que 3."+
+									"2. El resultado del dado es mayor que 3.");
+				int res = sc.nextInt();
+				if (res == 1) {
 					recorrido = recorrido + resultado;
 					longitudPistaCarreras = longitudPistaCarreras - recorrido;
-				} else {
-					System.out.println("Elige una opción:"+
-										"1. El resultado del dado es menor que 3."+
-										"2. El resultado del dado es mayor que 3.");
-					int res = sc.nextInt();
-					if (res == 1) {
-						recorrido = recorrido + resultado;
-						longitudPistaCarreras = longitudPistaCarreras - recorrido;
-					} else if (res == 2) {
-						recorrido = recorrido + resultado;
-						longitudPistaCarreras = longitudPistaCarreras - recorrido;
-					} else {
-						resultado = 0;
-						recorrido = recorrido + resultado;
-						longitudPistaCarreras = longitudPistaCarreras - recorrido;
-					}
-				}
-				System.out.println(longitudPistaCarreras);
-			} else {
-				System.out.println("Turno Tercer Jugador");
-				resultado = DadoBase.lanzarDado(Correcaminos.numeroCaras);
-				if (resultado % 2 == 0) {
+				} else if (res == 2) {
 					recorrido = recorrido + resultado;
 					longitudPistaCarreras = longitudPistaCarreras - recorrido;
 				} else {
@@ -185,10 +180,21 @@ public class ProgramaCarrera {
 					recorrido = recorrido + resultado;
 					longitudPistaCarreras = longitudPistaCarreras - recorrido;
 				}
-				System.out.println(longitudPistaCarreras);
 			}
+			System.out.println(longitudPistaCarreras);
+		} else {
+			resultado = DadoBase.lanzarDado(10);
+			if (resultado % 2 == 0) {
+				recorrido = recorrido + resultado;
+				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			} else {
+				resultado = 0;
+				recorrido = recorrido + resultado;
+				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			}
+			System.out.println(longitudPistaCarreras);
 		}
-
+		return longitudPistaCarreras;
 	}
 
 	/**
