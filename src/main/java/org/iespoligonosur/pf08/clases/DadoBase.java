@@ -7,25 +7,15 @@ package org.iespoligonosur.pf08.clases;
  */
 public abstract class DadoBase implements IDado{
 
-	public static int numeroCaras;
+	private  int numeroCaras;
 	
 	public DadoBase(int numeroCaras) {
 		// TODO Auto-generated constructor stub//Comentario prueba
-		numeroCaras = lanzarDado(numeroCaras);
-	}
-
-	public static int lanzarDado(int numeroCaras) {
-		int resultado = (int) (Math.random() * numeroCaras + 1);
-		return resultado;
+		this.numeroCaras = numeroCaras;
 	}
 	
-	public static int getNumeroCaras() {
+	public int getNumeroCaras() {
 		return numeroCaras;
-	}
-	
-
-	public void setNumeroCaras(int numeroCaras) {
-		DadoBase.numeroCaras = numeroCaras;
 	}
 
 }

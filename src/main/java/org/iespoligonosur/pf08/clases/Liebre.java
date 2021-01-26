@@ -3,20 +3,10 @@ package org.iespoligonosur.pf08.clases;
 public class Liebre extends JugadorBasico {
 
 	private static final TipoJugador tipo = TipoJugador.LIEBRE;
-	public DadoBase dado;
-	private int numeroCaras;
 	
-	public Liebre(String nombre, int numeroCaras, int velocidadPunta, int ultimaTirada, int recorrido) {
+	
+	public Liebre(String nombre, int velocidadPunta, int ultimaTirada, int recorrido) {
 		super(nombre, velocidadPunta, ultimaTirada, recorrido);
-	}
-	
-	public int getNumeroCaras() {
-		return numeroCaras;
-	}
-	
-
-	public void setNumeroCaras(int numeroCaras) {
-		this.numeroCaras = numeroCaras;
 	}
 
 	@Override

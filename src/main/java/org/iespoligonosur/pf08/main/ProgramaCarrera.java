@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import org.iespoligonosur.pf08.clases.Correcaminos;
 import org.iespoligonosur.pf08.clases.DadoBase;
+import org.iespoligonosur.pf08.clases.DadoNCaras;
 import org.iespoligonosur.pf08.clases.IJugador;
 import org.iespoligonosur.pf08.clases.JugadorBasico;
 import org.iespoligonosur.pf08.clases.Liebre;
@@ -48,10 +49,16 @@ public class ProgramaCarrera {
 
 		System.out.println("Ha elegido " + resNumCarrera + " carreras");
 
+		int numJugadores = 0;
+		
 		for (int i = 1; i <= resNumCarrera; i++) {
 
 			System.out.println(i + "ª carrera");
-			creaJugadores(jugadores, recorrido);
+			numJugadores = creaJugadores(recorrido);
+			//iniciaPartida();
+			for (int j = 0; i < numJugadores; j ++) {
+				System.out.println(jugadores[j].getNombre());
+			}
 
 		}
 	}
@@ -60,7 +67,7 @@ public class ProgramaCarrera {
 	 * Este metodo se encarga de crear uno a uno hasta 6 jugadores con la ayuda del
 	 * usuario que introduce los datos a travÃ©s de la consola.
 	 */
-	private static void creaJugadores(IJugador[] jugadores, int recorrido) {
+	private static int creaJugadores(int recorrido) {
 
 		int resNumJugador = 0;
 		int resPersonaje = 0;
@@ -89,10 +96,10 @@ public class ProgramaCarrera {
 
 		} while (resNumJugador < 2 || resNumJugador > 6);
 
-		for (int i = 1; i <= resNumJugador; i++) {
+		for (int i = 0; i < resNumJugador; i++) {
 
 			do {
-				System.out.println(i + "º jugador");
+				System.out.println((i+1) + "º jugador");
 				System.out.println("Elige personaje: \n1 Tortuga \n2 Liebre \n3 Correcaminos");
 				resPersonaje = sc.nextInt();
 
@@ -101,22 +108,22 @@ public class ProgramaCarrera {
 					System.out.println("Has elegido Tortuga");
 					System.out.println("Escribe un nombre para tu personaje Tortuga");
 					nombre = sc.next();
-					Tortuga t = new Tortuga(nombre, 3, 0, 0, 0);
-					System.out.println(t);
+					jugadores[i] = new Tortuga(nombre, 0, 0, 0);
+					
 					break;
 				case 2:
 					System.out.println("Has elegido Liebre");
 					System.out.println("Escribe un nombre para tu personaje Liebre");
 					nombre = sc.next();
-					Liebre l = new Liebre(nombre, 6, 0, 0, 0);
-					System.out.println(l);
+					jugadores[i] = new Liebre(nombre, 0, 0, 0);
+					
 					break;
 				case 3:
 					System.out.println("Has elegido Correcaminos");
 					System.out.println("Escribe un nombre para tu personaje Correcaminos");
 					nombre = sc.next();
-					Correcaminos c = new Correcaminos(nombre, 10, 0, 0, 0);
-					System.out.println(c);
+					jugadores[i] = new Correcaminos(nombre, 0, 0, 0);
+					
 					break;
 				default:
 
@@ -127,7 +134,7 @@ public class ProgramaCarrera {
 			while ((resPersonaje == 1 || resPersonaje == 2 || resPersonaje == 3) == false);
 
 		}
-		iniciaPartida(longitudPistaCarreras, recorrido);
+		return resNumJugador;
 	}
 
 	/**
@@ -145,57 +152,11 @@ public class ProgramaCarrera {
 			//int resultado = resultado de la clase DadoBase;
 			int resultado = 0;
 			System.out.println("Turno Primer Jugador");
-			longitudPistaCarreras = ProgramaCarrera.resJugadorDado(longitudPistaCarreras, recorrido, resultado);
 			System.out.println("Turno Segundo Jugador");
-			longitudPistaCarreras = ProgramaCarrera.resJugadorDado(longitudPistaCarreras, recorrido, resultado);
 			System.out.println("Turno Tercer Jugador");
-			longitudPistaCarreras = ProgramaCarrera.resJugadorDado(longitudPistaCarreras, recorrido, resultado);
 		}
 	}
 	
-	private static int resJugadorDado(int longitudPistaCarreras, int recorrido, int resultado) {
-	if(resPersonaje == 1) {
-		resultado = DadoBase.lanzarDado(3);
-		recorrido = recorrido + resultado;
-		longitudPistaCarreras = longitudPistaCarreras - recorrido;
-		System.out.println(longitudPistaCarreras);
-		} else if (resPersonaje == 2) {
-			resultado = DadoBase.lanzarDado(6);
-			if(resultado == 3) {
-				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
-			} else {
-				System.out.println("Elige una opción:"+
-									"1. El resultado del dado es menor que 3."+
-									"2. El resultado del dado es mayor que 3.");
-				int res = sc.nextInt();
-				if (res == 1) {
-					recorrido = recorrido + resultado;
-					longitudPistaCarreras = longitudPistaCarreras - recorrido;
-				} else if (res == 2) {
-					recorrido = recorrido + resultado;
-					longitudPistaCarreras = longitudPistaCarreras - recorrido;
-				} else {
-					resultado = 0;
-					recorrido = recorrido + resultado;
-					longitudPistaCarreras = longitudPistaCarreras - recorrido;
-				}
-			}
-			System.out.println(longitudPistaCarreras);
-		} else {
-			resultado = DadoBase.lanzarDado(10);
-			if (resultado % 2 == 0) {
-				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
-			} else {
-				resultado = 0;
-				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
-			}
-			System.out.println(longitudPistaCarreras);
-		}
-		return longitudPistaCarreras;
-	}
 
 	/**
 	 * Este metodo realiza una representacion grafica en consola de la pista y la
@@ -208,9 +169,55 @@ public class ProgramaCarrera {
 	/**
 	 * Este metodo llama al metodo avanza para cada uno de los participantes de la
 	 * carrea para ejecutar un turno de la carrera
+	 * 
+	 * Este es el código que resuelve los requisitos de programa carreras.
+	 * if(resPersonaje == 1) {
+		DadoNCaras dtortuga = new DadoNCaras(3);
+		resultado = DadoNCaras.resultado;
+		recorrido = recorrido + resultado;
+		longitudPistaCarreras = longitudPistaCarreras - recorrido;
+		System.out.println(longitudPistaCarreras);
+	} else if (resPersonaje == 2) {
+		DadoNCaras dliebre = new DadoNCaras(6);
+		resultado = DadoNCaras.resultado;
+		if(resultado == 3) {
+			recorrido = recorrido + resultado;
+			longitudPistaCarreras = longitudPistaCarreras - recorrido;
+		} else {
+			System.out.println("Elige una opción:"+
+								"1. El resultado del dado es menor que 3."+
+								"2. El resultado del dado es mayor que 3.");
+			int res = sc.nextInt();
+			if (res == 1) {
+				recorrido = recorrido + resultado;
+				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			} else if (res == 2) {
+				recorrido = recorrido + resultado;
+				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			} else {
+				resultado = 0;
+				recorrido = recorrido + resultado;
+				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			}
+		}
+		System.out.println(longitudPistaCarreras);
+	} else {
+		DadoNCaras dcorrecaminos = new DadoNCaras(10);
+		resultado = DadoNCaras.resultado;
+		if (resultado % 2 == 0) {
+			recorrido = recorrido + resultado;
+			longitudPistaCarreras = longitudPistaCarreras - recorrido;
+		} else {
+			resultado = 0;
+			recorrido = recorrido + resultado;
+			longitudPistaCarreras = longitudPistaCarreras - recorrido;
+		}
+		System.out.println(longitudPistaCarreras);
+	}
+
 	 */
 	private void ejecutaTurno() {
-
+		
 	}
 
 	/**
