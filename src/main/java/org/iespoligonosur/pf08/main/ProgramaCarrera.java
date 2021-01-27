@@ -169,55 +169,51 @@ public class ProgramaCarrera {
 	/**
 	 * Este metodo llama al metodo avanza para cada uno de los participantes de la
 	 * carrea para ejecutar un turno de la carrera
-	 * 
-	 * Este es el código que resuelve los requisitos de programa carreras.
-	 * if(resPersonaje == 1) {
-		DadoNCaras dtortuga = new DadoNCaras(3);
-		resultado = DadoNCaras.resultado;
-		recorrido = recorrido + resultado;
-		longitudPistaCarreras = longitudPistaCarreras - recorrido;
-		System.out.println(longitudPistaCarreras);
-	} else if (resPersonaje == 2) {
-		DadoNCaras dliebre = new DadoNCaras(6);
-		resultado = DadoNCaras.resultado;
-		if(resultado == 3) {
-			recorrido = recorrido + resultado;
-			longitudPistaCarreras = longitudPistaCarreras - recorrido;
+	 */
+	private void ejecutaTurno(int resultado, int recorrido, int velocidadPunta) {
+		if(resPersonaje == 1) {
+			DadoNCaras dtortuga = new DadoNCaras(3);
+			resultado = DadoNCaras.resultado;
+			longitudPistaCarreras = avanza(longitudPistaCarreras, recorrido, resultado);
+			System.out.println(longitudPistaCarreras);
+		} else if (resPersonaje == 2) {
+			DadoNCaras dliebre = new DadoNCaras(6);
+			resultado = DadoNCaras.resultado;
+			if(resultado == 3) {
+				longitudPistaCarreras = avanza(longitudPistaCarreras, recorrido, resultado);
+			} else {
+				System.out.println("Elige una opción:"+
+									"1. El resultado del dado es menor que 3."+
+									"2. El resultado del dado es mayor que 3.");
+				int res = sc.nextInt();
+				if (res == 1) {
+					longitudPistaCarreras = avanza(longitudPistaCarreras, recorrido, resultado);
+				} else if (res == 2) {
+					longitudPistaCarreras = avanza(longitudPistaCarreras, recorrido, resultado);
+				} else {
+					resultado = 0;
+					longitudPistaCarreras = avanza(longitudPistaCarreras, recorrido, resultado);
+				}
+			}
+			System.out.println(longitudPistaCarreras);
 		} else {
-			System.out.println("Elige una opción:"+
-								"1. El resultado del dado es menor que 3."+
-								"2. El resultado del dado es mayor que 3.");
-			int res = sc.nextInt();
-			if (res == 1) {
-				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
-			} else if (res == 2) {
-				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+			DadoNCaras dcorrecaminos = new DadoNCaras(10);
+			resultado = DadoNCaras.resultado;
+			if (resultado % 2 == 0) {
+				longitudPistaCarreras = avanza(longitudPistaCarreras, recorrido, resultado);
 			} else {
 				resultado = 0;
-				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+				longitudPistaCarreras = avanza(longitudPistaCarreras, recorrido, resultado);
 			}
+			System.out.println(longitudPistaCarreras);
 		}
-		System.out.println(longitudPistaCarreras);
-	} else {
-		DadoNCaras dcorrecaminos = new DadoNCaras(10);
-		resultado = DadoNCaras.resultado;
-		if (resultado % 2 == 0) {
-			recorrido = recorrido + resultado;
-			longitudPistaCarreras = longitudPistaCarreras - recorrido;
-		} else {
-			resultado = 0;
-			recorrido = recorrido + resultado;
-			longitudPistaCarreras = longitudPistaCarreras - recorrido;
-		}
-		System.out.println(longitudPistaCarreras);
-	}
 
-	 */
-	private void ejecutaTurno() {
-		
+	}
+	
+	private int avanza(int longitudPistaCarreras, int recorrido, int resultado) {
+		recorrido = recorrido + resultado;
+		longitudPistaCarreras = longitudPistaCarreras - recorrido;
+		return longitudPistaCarreras;
 	}
 
 	/**
