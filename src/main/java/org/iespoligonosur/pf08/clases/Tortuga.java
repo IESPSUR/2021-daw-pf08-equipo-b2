@@ -1,21 +1,29 @@
 package org.iespoligonosur.pf08.clases;
 
-public class Tortuga extends JugadorBasico{
+import java.util.Random;
+
+
+
+public class Tortuga extends JugadorBasico {
 
 	private static final TipoJugador tipo = TipoJugador.TORTUGA;
 	
+	
 	public Tortuga(String nombre, int velocidadPunta, int ultimaTirada, int recorrido) {
 		super(nombre, velocidadPunta, ultimaTirada, recorrido);
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	
+	public static void lanzarDadoTortuga() {
+		Random dado = new Random();
+		int nuno = 1+dado.nextInt(3);
+	}
 	
 	
 	
 	public String getNombre() {
 		// TODO Auto-generated method stub
-		return null;
+		return nombre;
 	}
 
 	@Override

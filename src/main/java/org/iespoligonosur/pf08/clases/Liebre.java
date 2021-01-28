@@ -1,17 +1,25 @@
 package org.iespoligonosur.pf08.clases;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Liebre extends JugadorBasico {
 
 	private static final TipoJugador tipo = TipoJugador.LIEBRE;
-	
+
 	public Liebre(String nombre, int velocidadPunta, int ultimaTirada, int recorrido) {
 		super(nombre, velocidadPunta, ultimaTirada, recorrido);
+	}
+	
+	public static void lanzarDadoLiebre() {
+		Random dado = new Random();
+		int nuno = 1+dado.nextInt(2);
 	}
 
 	@Override
 	public String getNombre() {
 		// TODO Auto-generated method stub
-		return null;
+		return nombre;
 	}
 
 	@Override
@@ -35,15 +43,15 @@ public class Liebre extends JugadorBasico {
 	@Override
 	public void resetea() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void avanza() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public String toString() {
 		return "Nombre de la Liebre: " + nombre;
 	}
