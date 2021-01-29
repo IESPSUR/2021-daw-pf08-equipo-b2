@@ -178,6 +178,47 @@ public class ProgramaCarrera {
 			resultado = ejecutaTurno(resPersonaje, recorrido, resultado);
 			fTurno1 = resultado + fTurno1;
 			System.out.println("Recorrido de tortuga " + fTurno1);
+			
+			if (resNumJugador > 2) {
+				
+				System.out.println("Turno " + (e + 1) + " para jugador " + jugadores[3]);
+				System.out.println("Escribe ok para continuar");
+				String ok3 = sc.next();
+				resultado = ejecutaTurno(resPersonaje, recorrido, resultado);
+				fTurno1 = resultado + fTurno1;
+				System.out.println("Recorrido de tortuga " + fTurno1);
+				
+				if (resNumJugador > 3) {
+					
+					System.out.println("Turno " + (e + 1) + " para jugador " + jugadores[4]);
+					System.out.println("Escribe ok para continuar");
+					String ok4 = sc.next();
+					resultado = ejecutaTurno(resPersonaje, recorrido, resultado);
+					fTurno1 = resultado + fTurno1;
+					System.out.println("Recorrido de tortuga " + fTurno1);
+					
+					if (resNumJugador > 4) {
+						
+						System.out.println("Turno " + (e + 1) + " para jugador " + jugadores[5]);
+						System.out.println("Escribe ok para continuar");
+						String ok5 = sc.next();
+						resultado = ejecutaTurno(resPersonaje, recorrido, resultado);
+						fTurno1 = resultado + fTurno1;
+						System.out.println("Recorrido de tortuga " + fTurno1);
+						
+						if (resNumJugador > 5) {
+							
+							System.out.println("Turno " + (e + 1) + " para jugador " + jugadores[6]);
+							System.out.println("Escribe ok para continuar");
+							String ok6 = sc.next();
+							resultado = ejecutaTurno(resPersonaje, recorrido, resultado);
+							fTurno1 = resultado + fTurno1;
+							System.out.println("Recorrido de tortuga " + fTurno1);
+							
+						}
+					}
+				}
+			}
 		}
 
 	}
