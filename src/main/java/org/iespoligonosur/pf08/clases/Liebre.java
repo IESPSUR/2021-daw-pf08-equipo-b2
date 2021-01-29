@@ -53,7 +53,7 @@ public class Liebre extends JugadorBasico {
 	}
 
 	public String toString() {
-		return "Nombre de la Liebre: " + nombre;
+		return "Liebre: " + nombre;
 	}
 
 }

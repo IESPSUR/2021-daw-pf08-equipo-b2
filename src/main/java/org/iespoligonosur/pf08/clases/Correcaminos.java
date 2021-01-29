@@ -2,7 +2,7 @@ package org.iespoligonosur.pf08.clases;
 
 public class Correcaminos extends JugadorBasico {
 	
-	private static final TipoJugador tipo = TipoJugador.TORTUGA;
+	private static final TipoJugador tipo = TipoJugador.CORRECAMINOS;
 
 	public Correcaminos(String nombre, int velocidadPunta, int ultimaTirada, int recorrido) {
 		super(nombre, velocidadPunta, ultimaTirada, recorrido);
@@ -45,7 +45,7 @@ public class Correcaminos extends JugadorBasico {
 	}
 	
 	public String toString() {
-		return "Nombre del Correcaminos: " + nombre;
+		return "Correcaminos: " + nombre;
 	}
 
 }

@@ -57,7 +57,7 @@ public class Tortuga extends JugadorBasico {
 	}
 	
 	public String toString() {
-		return "Nombre de la Tortuga: " + nombre;
+		return "Tortuga: " + nombre;
 	}
 
 }

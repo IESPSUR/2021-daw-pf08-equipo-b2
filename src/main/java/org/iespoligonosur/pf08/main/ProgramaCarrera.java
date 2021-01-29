@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import org.iespoligonosur.pf08.clases.Correcaminos;
+import org.iespoligonosur.pf08.clases.DadoBase;
 import org.iespoligonosur.pf08.clases.DadoNCaras;
 import org.iespoligonosur.pf08.clases.IJugador;
 import org.iespoligonosur.pf08.clases.JugadorBasico;
@@ -16,7 +17,7 @@ public class ProgramaCarrera {
 	// Array con los jugadores
 	private static IJugador jugadores[] = new IJugador[6];
 	private static int longitudPistaCarreras = 100;
-	private int turno;
+	private static int turno;
 	private static LocalDateTime inicioPartida;
 	private static LocalDateTime finalPartida;
 
@@ -53,11 +54,11 @@ public class ProgramaCarrera {
 		for (int i = 1; i <= resNumCarrera; i++) {
 
 			System.out.println(i + " carrera");
-			numJugadores = creaJugadores();
+			numJugadores = creaJugadores(recorrido, resultado);
 			for (int j = 0; j < numJugadores; j++) {
 				System.out.println(jugadores[j].getNombre());
 			}
-			iniciaPartida(resPersonaje, recorrido, resultado, resNumJugador);
+
 		}
 	}
 
@@ -65,7 +66,7 @@ public class ProgramaCarrera {
 	 * Este metodo se encarga de crear uno a uno hasta 6 jugadores con la ayuda del
 	 * usuario que introduce los datos a travÃ©s de la consola.
 	 */
-	private static int creaJugadores() {
+	private static int creaJugadores(int recorrido, int resultado) {
 
 		int resNumJugador = 0;
 		int resPersonaje = 0;
@@ -98,73 +99,86 @@ public class ProgramaCarrera {
 			do {
 				System.out.println((i + 1) + " jugador");
 				System.out.println("Elige personaje: \n1 Tortuga \n2 Liebre \n3 Correcaminos");
-				resPersonaje = sc.nextInt();
 
-				switch (resPersonaje) {
-				case 1:
-					System.out.println("Has elegido Tortuga");
-					System.out.println("Escribe un nombre para tu personaje Tortuga");
-					nombre = sc.next();
-					System.out.println("Tu personaje tortuga se llama " + nombre);
-					jugadores[i] = new Tortuga(nombre, 0, 0, 0);
-					break;
-				case 2:
-					System.out.println("Has elegido Liebre");
-					System.out.println("Escribe un nombre para tu personaje Liebre");
-					nombre = sc.next();
-					System.out.println("Tu personaje liebre se llama " + nombre);
-					jugadores[i] = new Liebre(nombre, 0, 0, 0);
-					break;
-				case 3:
-					System.out.println("Has elegido Correcaminos");
-					System.out.println("Escribe un nombre para tu personaje Correcaminos");
-					nombre = sc.next();
-					System.out.println("Tu personaje correcaminos se llama " + nombre);
-					jugadores[i] = new Correcaminos(nombre, 0, 0, 0);
-					break;
-				default:
-
-					System.out.println("Personaje incorrecto");
-
-				}
+				resPersonaje = eligePersonaje(resPersonaje, i);
 
 			} while ((resPersonaje == 1 || resPersonaje == 2 || resPersonaje == 3) == false);
 
 			System.out.println("Los jugadores son:");
 		}
+
+		iniciaPartida(resPersonaje, recorrido, resultado, resNumJugador, turno);
 		return resNumJugador;
 
 	}
+
+	private static int eligePersonaje(int resPersonaje, int i) {
+
+		String nombre;
+		resPersonaje = sc.nextInt();
+
+		switch (resPersonaje) {
+		case 1:
+			System.out.println("Has elegido Tortuga");
+			System.out.println("Escribe un nombre para tu personaje Tortuga");
+			nombre = sc.next();
+			System.out.println("Tu personaje tortuga se llama " + nombre);
+			jugadores[i] = new Tortuga(nombre, 0, 0, 0);
+			break;
+		case 2:
+			System.out.println("Has elegido Liebre");
+			System.out.println("Escribe un nombre para tu personaje Liebre");
+			nombre = sc.next();
+			System.out.println("Tu personaje liebre se llama " + nombre);
+			jugadores[i] = new Liebre(nombre, 0, 0, 0);
+			break;
+		case 3:
+			System.out.println("Has elegido Correcaminos");
+			System.out.println("Escribe un nombre para tu personaje Correcaminos");
+			nombre = sc.next();
+			System.out.println("Tu personaje correcaminos se llama " + nombre);
+			jugadores[i] = new Correcaminos(nombre, 0, 0, 0);
+			break;
+		default:
+
+			System.out.println("Personaje incorrecto");
+
+		}
+
+		return resPersonaje;
+
+	};
 
 	/**
 	 * Este metodo inicia la partida con los jugadores ya previamente creados por el
 	 * usuario La partida termina cuando cualquiera de los jugadores recorre toda la
 	 * longitud determinada para la pista alcanzando la meta.
 	 */
-	private static void iniciaPartida(int resPersonaje, int recorrido, int resultado, int resNumJugador) {
+	private static void iniciaPartida(int resPersonaje, int recorrido, int resultado, int resNumJugador, int turno) {
 
+		int fTurno1 = 0;
 		String iniciarCarrera;
-
-//		do {
-//
-//			System.out.println("Escribe ok para iniciar la carrera");
-//			iniciarCarrera = sc.next();
-//			break;
-//			
-//		} while (iniciarCarrera.equals("ok") == false);
-
 		System.out.println("Inicia la carrera");
 		System.out.println("*****************");
 		inicioPartida = LocalDateTime.now();
 		System.out.println("Temporizador: " + inicioPartida);
 
-		int ronda = 0;
-		for (int i = 0; i < resNumJugador; i++) {
-
-			System.out.println("Prueba");
+		turno = 4;
+		for (int e = 0; e < turno; e++) {
+			System.out.println("Turno " + (e + 1) + " para jugador " + jugadores[0]);
+			System.out.println("Escribe ok para continuar");
+			String ok = sc.next();
+			resultado = ejecutaTurno(resPersonaje, recorrido, resultado);
+			fTurno1 = resultado + fTurno1;
+			System.out.println("Recorrido de tortuga " + fTurno1);
+			
+			System.out.println("Turno " + (e + 1) + " para jugador " + jugadores[1]);
+			System.out.println("Escribe ok para continuar");
+			String ok2 = sc.next();
+			resultado = ejecutaTurno(resPersonaje, recorrido, resultado);
+			fTurno1 = resultado + fTurno1;
+			System.out.println("Recorrido de tortuga " + fTurno1);
 		}
-
-		
 
 	}
 
@@ -180,51 +194,69 @@ public class ProgramaCarrera {
 	 * Este metodo llama al metodo avanza para cada uno de los participantes de la
 	 * carrea para ejecutar un turno de la carrera
 	 */
-	private static void ejecutaTurno(int resPersonaje, int recorrido, int resultado) {
+	private static int ejecutaTurno(int resPersonaje, int recorrido, int resultado) {
+
+		int resultadolongitudPistaCarreras = 0;
+		int numeroCaras = 0;
 
 		if (resPersonaje == 1) {
-			DadoNCaras dtortuga = new DadoNCaras(3);
-			resultado = DadoNCaras.resultado;
+			numeroCaras = 3;
+
+			DadoNCaras prueba = new DadoNCaras(numeroCaras);
+			System.out.println("Número de caras Tortuga " + numeroCaras);
+			resultado = DadoNCaras.lanzarDados(numeroCaras);
+			System.out.println("Resultado de tortuga " + resultado);
 			recorrido = recorrido + resultado;
-			longitudPistaCarreras = longitudPistaCarreras - recorrido;
-			System.out.println(longitudPistaCarreras);
+//			System.out.println("Recorrido de tortuga " + recorrido);
+
 		} else if (resPersonaje == 2) {
-			DadoNCaras dliebre = new DadoNCaras(6);
-			resultado = DadoNCaras.resultado;
+			numeroCaras = 6;
+			DadoNCaras prueba2 = new DadoNCaras(numeroCaras);
+			System.out.println("Número de caras Liebre " + numeroCaras);
+			resultado = DadoNCaras.lanzarDados(numeroCaras);
 			if (resultado == 3) {
+
+				System.out.println("Resultado de Liebre " + resultado);
 				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+				System.out.println("Recorrido de Liebre " + recorrido);
+
 			} else {
-				System.out.println("Elige una opcion:" + "1. El resultado del dado es menor que 3."
+				System.out.println("Elige una opción:" + "1. El resultado del dado es menor que 3."
 						+ "2. El resultado del dado es mayor que 3.");
 				int res = sc.nextInt();
-				if (res == 1) {
+				if (res == 1 && resultado < 3) {
+					System.out.println("Resultado de Liebre " + resultado);
 					recorrido = recorrido + resultado;
-					longitudPistaCarreras = longitudPistaCarreras - recorrido;
-				} else if (res == 2) {
+					System.out.println("Recorrido de Liebre " + recorrido);
+				} else if (res == 2 && resultado > 3) {
+					System.out.println("Resultado de Liebre " + resultado);
 					recorrido = recorrido + resultado;
-					longitudPistaCarreras = longitudPistaCarreras - recorrido;
+					System.out.println("Recorrido de Liebre " + recorrido);
 				} else {
 					resultado = 0;
+					System.out.println("Resultado de Liebre " + resultado);
 					recorrido = recorrido + resultado;
-					longitudPistaCarreras = longitudPistaCarreras - recorrido;
+					System.out.println("Recorrido de Liebre " + recorrido);
 				}
 			}
-			System.out.println(longitudPistaCarreras);
+
 		} else {
-			DadoNCaras dcorrecaminos = new DadoNCaras(10);
-			resultado = DadoNCaras.resultado;
+			numeroCaras = 10;
+			DadoNCaras prueba3 = new DadoNCaras(numeroCaras);
+			System.out.println("Numero de caras correcaminos " + numeroCaras);
+			resultado = DadoNCaras.lanzarDados(numeroCaras);
 			if (resultado % 2 == 0) {
+				System.out.println("Resultado de Correcaminos " + resultado);
 				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+				System.out.println("Recorrido de Correcaminos " + recorrido);
 			} else {
 				resultado = 0;
+				System.out.println("Resultado de Correcaminos " + resultado);
 				recorrido = recorrido + resultado;
-				longitudPistaCarreras = longitudPistaCarreras - recorrido;
+				System.out.println("Recorrido de Correcaminos " + recorrido);
 			}
-			System.out.println(longitudPistaCarreras);
 		}
-
+		return resultado;
 	}
 
 	/**

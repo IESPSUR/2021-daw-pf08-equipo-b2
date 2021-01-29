@@ -2,7 +2,7 @@ package org.iespoligonosur.pf08.clases;
 
 public class DadoNCaras extends DadoBase {
 
-	public static int resultado;
+	
 
 	public DadoNCaras(int numeroCaras) {
 		super(numeroCaras);
@@ -10,7 +10,12 @@ public class DadoNCaras extends DadoBase {
 
 	@Override
 	public int lanzarDado() {
-		resultado = (int) (Math.random() * getNumeroCaras() + 1);
-		return resultado;
+		int numeroCaras = (int) (Math.random() * getNumeroCaras() + 1);
+		return numeroCaras;
+	}
+	
+	public static int lanzarDados(int numeroCaras) {
+		numeroCaras = (int) (Math.random() * getNumeroCaras() + 1);
+		return numeroCaras;
 	}	
 }

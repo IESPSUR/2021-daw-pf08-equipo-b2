@@ -12,14 +12,19 @@ import org.iespoligonosur.pf08.main.ProgramaCarrera;
  */
 public abstract class DadoBase implements IDado{
 
-	private  int numeroCaras;
+	private static  int numeroCaras;
 	
 	public DadoBase(int numeroCaras) {
 		this.numeroCaras = numeroCaras;
 	}
 	
-	public int getNumeroCaras() {
+	public static int getNumeroCaras() {
 		return numeroCaras;
+	}
+
+	public int lanzarDado() {
+		// TODO Auto-generated method stub
+		return 10;
 	}
 
 }
